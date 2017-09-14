@@ -1,0 +1,115 @@
+<!DOCTYE html>
+<html>
+<head>
+	<title>Musician Signup Form</title>
+</head>
+<body>
+
+<form name="frmMusician" id="frmMusician" method="get" action="processform.php">
+
+	<label for="MusicianName">Name:</label>
+	<input type="text" name="MusicianName" id="MusicianName" />
+	<br>
+
+	<label for="Instrument">Instrument:</label>
+	<input type="text" name="Instrument" id="Instrument" />	
+	<br />
+
+	<label for="YearsExperience">Years Experience:</label>
+	<input type="number" name="YearsExperience" id="YearsExperience" />	
+	<br />
+
+	<label for="EmailAddress">Email Address:</label>
+	<input type="email" name="EmailAddress" id="EmailAddress" />	
+	<br />
+
+	<input type="submit" name="btnProcess" id="btnProcess" value="Process Form" />
+	<br />
+</form>
+
+<div id="errorMessages">
+	<h1>Your form has errors</h1>
+	<div id="errorDetails">
+	</div>
+</div>
+
+<script>
+window.onload = hideErrorMessages;
+
+var submitEl = document.getElementById( "btnProcess" );
+submitEl.addEventListener( "click", checkForm );
+
+function checkForm(evt)
+{
+	evt.preventDefault();
+
+	var theMusicianName = document.getElementById( "MusicianName" );
+	var theInstrumet    = document.getElementById( "Instrument" );
+	var theExperience   = document.getElementById( "YearsExperience" );
+	var theEmail        = document.getElementById( "EmailAddress" );
+
+	if( theMusicianName.value == "" )
+	{
+		/*var theDetails = document.getElementById( "errorDetails" );
+		theDetails.innerHTML = "You forgot the musician name";
+		showErrorMessages();
+		*/
+		doErrorDetails( "You forgot the musician name" );
+	}
+	else if( theInstrumet.value == "" )
+	{
+		/*var theDetails = document.getElementById( "errorDetails" );
+		theDetails.innerHTML = "You forgot the Instrument";
+		showErrorMessages();
+		*/
+		doErrorDetails( "You forgot the Instrument" );
+	}
+	else if( theExperience.value == "" )
+	{
+		/*var theDetails = document.getElementById( "errorDetails" );
+		theDetails.innerHTML = "You forgot the Years of Experience";
+		showErrorMessages();
+		*/
+		doErrorDetails( "You forgot the Years of Experience" );
+	}
+	else if( theEmail.value == "" )
+	{
+		/*var theDetails = document.getElementById( "errorDetails" );
+		theDetails.innerHTML = "You forgot the Email Address";
+		showErrorMessages();
+		*/
+		doErrorDetails( "You forgot the Email Address" );
+	}
+	else
+	{
+		alert( "Thanks for all the info!" );
+		document.getElementById( "frmMusician" ).submit();
+	}
+
+}
+
+function doErrorDetails( theErrorMessage )
+{
+	var theDetails = document.getElementById( "errorDetails" );
+	theDetails.innerHTML = theErrorMessage;
+	showErrorMessages();
+}
+
+function hideErrorMessages()
+{
+	var el = document.getElementById( "errorMessages" );
+	el.style.display = "none";
+}
+
+function showErrorMessages()
+{
+	var el = document.getElementById( "errorMessages" );
+	el.style.display = "";
+}
+
+
+
+</script>
+
+</body>
+</html>

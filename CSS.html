@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		h1
+		{
+			text-decoration: underline;
+		}
+
+		li
+		{
+			background: #00f;
+			text-decoration: underline;
+			padding-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Favorite New Wave Bands</h1>
+
+	<ol>
+		<li>Depeche Mode</li>
+		<li>Erasure</li>
+		<li>Yazoo</li>
+		<li>Echo & The Bunnymen</li>
+		<li>The Faint</li>
+		<li>Disclosure</li>
+		<li>Sisters of Mercy</li>
+	</ol>
+
+	<h1>Favorite Metal Bands</h1>
+
+	<ul>
+		<li>Metallica</li>
+		<li>Venom</li>
+		<li>King Diamond</li>
+	</ul>
+
+	<button id="btnChange">Change Styles</button>
+
+	<script>
+		var myChangeButton = document.getElementById( "btnChange" );
+		myChangeButton.addEventListener( "click", updateStyles );
+
+		function updateStyles()
+		{
+			var theList = document.getElementsByTagName( "LI" );
+
+			for( var i = 0; i < theList.length; i++ )
+			{
+				theList[ i ].style.background = "#f00";
+				theList[ i ].style.textDecoration = "none";
+				theList[ i ].style.paddingTop = "0px";
+			}
+		}
+	</script>
+
+</body>
+</html>

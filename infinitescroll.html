@@ -1,0 +1,204 @@
+<script>
+var bInfiniteScroll = false;
+// reference to the actual "thing" (display object) that we're passing data to
+var pArticleListing = m("#article-container .mura-object");
+pArticleListing.data('async',true);
+var currentPage = 1;
+var win = $(window);
+// pagination links (view by 18, 60, all, etc)
+m( ".js-articleCountPerPageLink" ).click( function(evt)
+{
+evt.preventDefault();
+var articleCountPerPage = m(this).data( "article-count-per-page" );
+// set this view-link to "active" and turn off the others
+m( ".js-articleCountPerPageLink" ).removeClass( "active" );
+m(this).addClass( "active" );
+// infinite scrolling - view "all" stuff...
+if( m(this).hasClass( "js-infinite-scroll" ) )
+{
+m( "#js-pagination-outter-wrapper" ).hide();
+bInfiniteScroll = true;
+var pContentWrapperData = m("#article-container .mura-object:last-child").data();
+//pArticleListing.empty();
+m( "#article-container" ).empty();
+m.extend( pContentWrapperData, { "currentPage" : 1,
+"articleCountPerPage" : articleCountPerPage,
+"bInfiniteScroll" : true
+} );
+m( "#article-container" ).appendDisplayObject( pContentWrapperData ).then( function()
+{
+eqjs.all();
+} );
+}
+else	// regular "number of articles per page" stuff...
+{
+m( "#js-pagination-outter-wrapper" ).show();
+bInfiniteScroll = false;
+var pContentWrapperData = m("#article-container .mura-object:last-child").data();
+m("#article-container").empty();
+m.extend( pContentWrapperData, { "currentPage" : 1,
+"articleCountPerPage" : articleCountPerPage,
+"bInfiniteScroll" : false
+} );
+m( "#article-container" ).appendDisplayObject( pContentWrapperData ).then( function()
+{
+eqjs.all();
+} );
+}
+});
+
+
+windowScroll_handler = function()
+{
+// End of the document reached?
+var heightOfFooter = $( "#js-intuit-footer" ).height();
+//if( $(document).height() - win.height() == win.scrollTop() )
+if( $(document).height() - win.height() - heightOfFooter - 100 <= win.scrollTop() )
+{
+if( bInfiniteScroll )
+{
+win.off( "scroll", windowScroll_handler );
+// for pages 2 and beyond we need to actually do the fancy infinite scrolling logic.
+var data = m( "#article-container .mura-object:last-child" ).data();
+if( data.currentpage < data.numberofpages )
+{
+currentPage = currentPage + 1;
+m.extend( data, { articleCountPerPage : 18, // infinite scroll *always* scrolls in chunks of 18, regardless of if user clicked the "60" link earlier.
+currentPage : currentPage,
+bInfiniteScroll : true } );
+m( "#article-container" ).appendDisplayObject( data ).then( function(){ eqjs.all(); win.on( "scroll", windowScroll_handler ); } );
+}
+
+
+
+
+}
+};
+// infinite scroll...
+var win = $(window);
+win.on( "scroll", windowScroll_handler );
+// "sort by" links
+m( ".js-articleSortbyLink" ).click(function(evt)
+{
+evt.preventDefault();
+var pArticleListing = m("#article-container .mura-object");
+// set this sort-link to "active" and turn off the others
+m( ".js-articleSortbyLink" ).removeClass( "active" );
+m(this).addClass( "active" );
+// which column/direction are we currently on?
+var currentColumn = m( "#currentArticleSortByColumn" ).val();
+var currentDirection = m( "#currentArticleSortByDirection" ).val();
+var articleSortByColumn = m(this).data( "articlesortbycolumn" );
+// default Search "sort by relevance" is ASC. If the "direction" is blank, we need to sort by DESC to make the UI work correctly.
+if( articleSortByColumn === "solrSearch" && currentDirection == "" )
+{
+pArticleListing.data( 'articleSortByColumn', "solrSearch" );
+pArticleListing.data( 'articleSortByDirection', "DESC" );
+m( "#currentArticleSortByDirection" ).val( "DESC" );
+m( "#currentArticleSortByColumn" ).val( "solrSearch" );
+}
+else
+{
+pArticleListing.data( 'articleSortByColumn', articleSortByColumn );
+m( "#currentArticleSortByColumn" ).val( articleSortByColumn );
+// if we're changing columns, start with ASC sort.
+if( articleSortByColumn != currentColumn )
+{
+// releaseDate should default to DESC. name and relevance should default to ASC.
+if( articleSortByColumn === "releaseDate" )
+{
+pArticleListing.data( 'articleSortByDirection', "DESC" );
+m( "#currentArticleSortByDirection" ).val( "DESC" );
+}
+else
+{
+pArticleListing.data( 'articleSortByDirection', "ASC" );
+m( "#currentArticleSortByDirection" ).val( "ASC" );
+}
+}
+else
+{
+// not changing columns, so just be sure to change direction
+if( currentDirection === 'ASC' )
+{
+pArticleListing.data( 'articleSortByDirection', "DESC" );
+m( "#currentArticleSortByDirection" ).val( "DESC" );
+}
+else if( currentDirection === 'DESC' )
+{
+pArticleListing.data( 'articleSortByDirection', "ASC" );
+m( "#currentArticleSortByDirection" ).val( "ASC" );
+}
+}
+}
+m( "#article-container" ).empty();
+m( "#article-container" ).appendDisplayObject( pArticleListing.data() ).then( function()
+{
+eqjs.all();
+} );
+});
+// clicking on a "category/topic" will toggle if it is/isn't selected
+m(".js-categoryFilterCard" ).click( function( evt )
+{
+evt.preventDefault();
+// user clicked on a Tag, reset to "view by 18" if they were previously on Infinite Scroll
+if( bInfiniteScroll )
+{
+bInfiniteScroll = false;
+pArticleListing.data( "articleCountPerPage", 18 );
+m( "#ViewByAll" ).removeClass( "active" );
+m( "#ViewBy18" ).addClass( "active" );
+}
+var currentCard = $(this);
+if( currentCard.hasClass( "js-categoryFilterCardChecked" ) )
+{
+currentCard.removeClass( "js-categoryFilterCardChecked" );
+currentCard.removeClass( "active" );
+}
+else
+{
+currentCard.addClass( "js-categoryFilterCardChecked" );
+currentCard.addClass( "active" );
+}
+// figure out which categories have been selected
+var lstCategoryIDs = "";
+var numCategories = m( ".js-categoryFilterCardChecked" ).length;
+var ktr = 1;
+m( ".js-categoryFilterCardChecked" ).each( function( i )
+{
+lstCategoryIDs += $(this).data( "categoryid" );
+if( ktr < numCategories )
+{
+lstCategoryIDs += ",";
+}
+ktr++;
+});
+pArticleListing.data( "secondarycategoryid", lstCategoryIDs );
+m( "#article-container" ).empty();
+m( "#article-container" ).appendDisplayObject( pArticleListing.data() ).then( function(){ eqjs.all(); } );
+});
+// when the page first loads, check if we got any pre-selected categories passed via the URL
+doPreSelectedCategories();
+function doPreSelectedCategories()
+{
+var curCategory = 1;
+var numCategories = m( ".js-categoryFilterCardChecked" ).length;
+var lstCategoryIDs = "";
+if( numCategories > 0 )
+{
+m( ".js-categoryFilterCardChecked" ).each( function( i )
+{
+lstCategoryIDs += $(this).data( "categoryid" );
+if( curCategory < numCategories )
+{
+lstCategoryIDs += ",";
+}
+curCategory++;
+});
+pArticleListing.data( "secondarycategoryid", lstCategoryIDs );
+m( "#article-container" ).empty();
+m( "#article-container" ).appendDisplayObject( pArticleListing.data() ).then( function(){ eqjs.all(); } );
+}
+}
+});
+</script>

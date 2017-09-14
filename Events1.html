@@ -1,0 +1,51 @@
+<button id="myButton">Click Me</button>
+
+<button id="btnCompliment">Say Nice Things</button>
+
+<button id="btnMusicTrivia">Get Music Trivia</button>
+
+<div id="myDiv">give me trivia and compliment me</div>
+
+<script>
+
+window.onload = init
+
+function init()
+{
+	alert( "this page has been loaded correctly." );
+}
+
+function myCustomAlert()
+{
+	alert( "The button was clicked" );
+	console.log( "the myCustomAlert function ran" );
+}
+
+function getCompliment()
+{
+	alert( "You look very nice today" );
+}
+
+function getMusicTrivia()
+{
+	alert( "There is a new Erasure album coming out next month." );
+}
+
+var myDiv = document.getElementById( "myDiv" );
+myDiv.addEventListener( "mouseover", getCompliment );
+myDiv.addEventListener( "mouseover", getMusicTrivia );
+
+
+var theButton = document.getElementById( "myButton" );
+theButton.addEventListener( "click", myCustomAlert );
+
+var theButton2 = document.getElementById( "btnCompliment" );
+theButton2.addEventListener( "click", getCompliment );
+
+var theButton3 = document.getElementById( "btnMusicTrivia" );
+btnMusicTrivia.addEventListener( "click", getCompliment );
+btnMusicTrivia.addEventListener( "click", getMusicTrivia );
+
+
+
+</script>

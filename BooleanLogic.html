@@ -1,0 +1,44 @@
+<script>
+
+var myAge = 22;
+var myYearsExperience = 2;
+
+var myName = "John Mayer";
+
+var isOldEnough = false;
+var isExperienced = false;
+
+/*
+	only musicians over 21 and with 10+
+	years of experience can play in his band
+*/
+
+if( myAge >= 21 )
+{
+	isOldEnough = true;
+}
+else
+{
+	isOldEnough = false;
+}
+
+if( myYearsExperience >= 10 )
+{
+	isExperienced = true;
+}
+else
+{
+	isExperienced = false;
+}
+
+if( isOldEnough && isExperienced )
+{
+	alert( "You are qualified with " + myName );
+}
+else
+{
+	alert( "Sorry you are not qualified" );
+}
+
+
+</script>

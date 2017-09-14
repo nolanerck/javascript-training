@@ -1,0 +1,45 @@
+<!DOCTYE html>
+<html>
+<head>
+	<title>Musician Signup Form</title>
+</head>
+<body>
+
+<form name="frmMusician" id="frmMusician" method="get" action="processform.php">
+
+	<label for="MusicianName">Name:</label>
+	<input type="text" name="MusicianName" id="MusicianName" />
+	<br>
+
+	<label for="Instrument">Instrument:</label>
+	<input type="text" name="Instrument" id="Instrument" />	
+	<br />
+
+	<label for="YearsExperience">Years Experience:</label>
+	<input type="number" name="YearsExperience" id="YearsExperience" />	
+	<br />
+
+	<label for="EmailAddress">Email Address:</label>
+	<input type="email" name="EmailAddress" id="EmailAddress" />	
+	<br />
+
+	<input type="submit" name="btnProcess" id="btnProcess" value="Process Form" />
+	<br />
+</form>
+
+<div id="errorMessages">
+	<h1>Your form has errors</h1>
+	<div id="errorDetails">
+	</div>
+</div>
+
+<script src="formutils.js"></script>
+<script>
+	window.onload = hideErrorMessages;
+
+	var submitEl = document.getElementById( "btnProcess" );
+	submitEl.addEventListener( "click", checkForm );
+</script>
+
+</body>
+</html>

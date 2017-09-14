@@ -1,0 +1,30 @@
+<script>
+
+var beatle = "Pete";
+
+switch( beatle.toLowerCase() )
+{
+	case "john": alert( "John plays acoustic guitar" );
+				 break;
+
+	case "george": alert( "George plays electric guitar" );
+				   break;
+
+	case "paul": alert( "Paul plays bass" );
+				 break;
+
+    case "pete": 
+	case "ringo": 
+				  alert( beatle + " plays drums." );
+/*				  if( beatle.toLowerCase() == "pete" )
+				  {
+				  	alert( "Poor Pete, no longer a Beatle." );
+				  }
+*/
+				  break;
+
+	default: alert( "Sorry, that is not a Beatle" );
+			 break;
+}
+
+</script>

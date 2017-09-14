@@ -1,0 +1,20 @@
+<script>
+
+function getMovieInfo( actor, title, rating )
+{
+	var myMessage = actor + " plays a great role in the movie " + title + ". ";
+
+	var ratingInfo = title + " is rated " + rating;
+
+	var bothMessages = myMessage + ratingInfo;
+
+	return bothMessages;
+}
+
+
+var theAnswer = getMovieInfo( "Hugh Jackman", "Logan", "R" );
+document.write( theAnswer );
+
+alert( getMovieInfo( "Tom Cruise", "Top Gun", "PG" ) );
+
+</script>
