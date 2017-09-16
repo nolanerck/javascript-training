@@ -1,12 +1,27 @@
 <script>
+/*
+var musician1 = "David Bowie";
+var musician2 = "Tom Petty";
+var musician3 = "John Lennon";
+var musician4 = "Les Claypool";
+var musician5 = "Eric Clapton";
 
-var metalBands = [ "Metallica", "Megadeth", "Anthrax", "King Diamond", "Merciful Fate" ];
+alert( "Musician 1 is " + musician1 );
+alert( "Musician 2 is " + musician2 );
+alert( "Musician 3 is " + musician3 );
+alert( "Musician 4 is " + musician4 );
+alert( "Musician 5 is " + musician5 );
+*/
 
-var i = 0;
+var myMusicians = [ "David Bowie", "Tom Petty", "John Lennon", "Les Claypool", "Eric Clapton", "Mick Ronson" ];
 
-for( i = 0; i < metalBands.length; i++ )
+//alert( "Musician 3 is " + myMusicians[ 2 ] );
+
+for( var i = 0; i < myMusicians.length; i++ )
 {
-	alert( "Current band is: " + metalBands[ i ] );
+	alert( "Musician " + (i + 1) + " is " + myMusicians[ i ] );
 }
+
+
 
 </script>
