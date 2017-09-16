@@ -1,0 +1,11 @@
+<script>
+
+var testScore = "100";
+
+var bonusPoints = 5;
+
+var totalScore = testScore + bonusPoints;
+
+alert( "Your total score is: " + totalScore );
+
+</script>
