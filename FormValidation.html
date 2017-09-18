@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<form name="frmMusician" id="frmMusician" method="get" action="processform.php">
+<form name="frmMusician" id="frmMusician" method="post" action="processform.php">
 
 	<div>
 		<label for="MusicianName">Name:</label>
@@ -38,12 +38,53 @@
 	</div>
 </div>
 
-<script src="formutils.js"></script>
 <script>
-	var submitEl = document.getElementById( "btnProcess" );
-	submitEl.addEventListener( "click", checkForm );
 
-	window.onload = hideErrorMessages;
+var submitEl = document.getElementById( "btnProcess" );
+submitEl.addEventListener( "click", checkForm );
+
+window.onload = hideErrorMessages;
+
+function checkForm( evt )
+{
+	evt.preventDefault();
+
+	var theMusicianName = document.getElementById( "MusicianName" );
+	var theInstrument   = document.getElementById( "Instrument" );
+
+	if( theMusicianName.value == "" )
+	{
+		doErrorDetails( "You forgot the Musician Name" );
+	}
+	else if( theInstrument.value == "" )
+	{
+		doErrorDetails( "You forgot the Instrument." );
+	}
+	else
+	{
+		document.getElementById( "frmMusician" ).submit();
+	}
+}
+
+function hideErrorMessages()
+{
+	var theErrorPanel = document.getElementById( "errorMessages" );
+	theErrorPanel.style.display = "none";
+}
+
+function doErrorDetails( theErrorMessage )
+{
+	var theDetails = document.getElementById( "errorDetails" );
+	theDetails.innerHTML = theErrorMessage;
+	showErrorMessages();
+}
+
+function showErrorMessages()
+{
+	var el = document.getElementById( "errorMessages" );
+	el.style.display = "";
+}
+
 </script>
 
 </body>

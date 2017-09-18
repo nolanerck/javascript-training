@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Band List</title>
+</head>
+<body>
+
+<button id="btnGetBandList">Get My Bands</button>
+
+<h1>These are my favorite bands</h1>
+
+<div id="theBandList"></div>
+
+<h2>Thanks for playing!</h2>
+
+<script>
+
+var bandEl = document.getElementById( "btnGetBandList" );
+bandEl.addEventListener( "click", doGetBandList );
+
+function doGetBandList()
+{
+	var xhttp = new XMLHttpRequest();
+
+	xhttp.onreadystatechange = function()
+	{
+		if( this.readyState == 4 && this.status == 200 )
+		{
+			//document.getElementById( "theBandList" ).innerHTML = this.responseText;
+
+			//var myBandsEl = document.getElementById( "theBandList" ).innerHTML;
+
+			var myBandsEl = "";
+			myBandsEl = "<ul>";
+
+			var aryBands = JSON.parse( this.responseText );
+
+			for( var i = 0; i < aryBands.length; i++ )
+			{
+				//myBandsEl += "<li>" + aryBands[ i ] + "</li>";
+				myBandsEl = myBandsEl + "<li>" + aryBands[ i ] + "</li>";
+			}
+
+			//myBandsEl += "</ul>";
+			myBandsEl = myBandsEl + "</ul>";
+
+			document.getElementById( "theBandList" ).innerHTML = myBandsEl;
+		}
+	};
+
+	xhttp.open( "GET", "listRockbands.php", true );
+	xhttp.send();
+}
+
+</script>
+
+</body>
+</html>

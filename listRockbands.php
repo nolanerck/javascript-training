@@ -6,6 +6,9 @@
 					   "Bastille",
 					   "The John Mayer Trio",
 					   "Primus",
+					   "Megadeth",
+					   "slayer",
+					   "Kraftwerk",
 					   "The Beatles" );
 
 	$bandsEncoded = json_encode( $aryBands );
