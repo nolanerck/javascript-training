@@ -1,0 +1,81 @@
+<script>
+/*
+var musicianName = "John Lennon";
+var musicianInstrument = "Acoustic Guitar";
+var yearsExperience = 12;
+var musicianEmail = "john@yoko.com";
+
+function getInfo( myName, myInstrument, myExperience, myEmail )
+{
+	document.write( "Musician Details:<br>" );
+	document.write( "<br>" );
+	document.write( "Name: " + myName );
+	document.write( "<br>" );
+	document.write( "Instrument: " + myInstrument );
+	document.write( "<br>" );
+	document.write( "Experience: " + myExperience );
+	document.write( "<br>" );
+	document.write( "Email: " + myEmail );
+	document.write( "<br>" );
+}
+
+getInfo( musicianName, musicianInstrument, yearsExperience, musicianEmail );
+getInfo( "David Bowie", "keyboard", 15, "david@bowie.net" );
+*/
+
+
+var musician = {
+					name: "",
+					instrument: "",
+					yearsExperience: 0,
+					email: "",
+					getInfo: function()
+					{
+						document.write( "<br>Musician Details:<br>" );
+						document.write( "<br>" );
+						document.write( "Name: " + this.name );
+						document.write( "<br>" );
+						document.write( "Instrument: " + this.instrument );
+						document.write( "<br>" );
+						document.write( "Experience: " + this.yearsExperience );
+						document.write( "<br>" );
+						document.write( "Email: " + this.email );
+						document.write( "<br>" );
+					},
+					practice: function()
+					{
+						document.write( this.name + " is practicing the " + this.instrument );
+						document.write( "<br>" );	
+					}
+				};
+
+var theGuitarist = musician;
+
+theGuitarist.getInfo();
+
+theGuitarist.name = "Steve Vai";
+theGuitarist.instrument = "7-string guitars";
+theGuitarist.yearsExperience = 40;
+theGuitarist.email = "steve@guitar.net";
+
+theGuitarist.getInfo();
+
+theGuitarist.practice();
+
+var theDrummer = Object.assign( {}, musician );
+
+theDrummer.name = "Bill Bruford";
+theDrummer.instrument = "congas";
+theDrummer.getInfo();
+theDrummer.practice();
+
+theGuitarist.getInfo();
+
+var theBassist = Object.assign( {}, musician );
+
+theBassist.name = "Chris Squire";
+theBassist.instrument = "5-string bass";
+theBassist.getInfo();
+
+
+</script>

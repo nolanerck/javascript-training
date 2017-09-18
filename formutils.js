@@ -1,33 +1,28 @@
-function checkForm(evt)
+function checkForm( evt )
 {
 	evt.preventDefault();
 
 	var theMusicianName = document.getElementById( "MusicianName" );
-	var theInstrumet    = document.getElementById( "Instrument" );
-	var theExperience   = document.getElementById( "YearsExperience" );
-	var theEmail        = document.getElementById( "EmailAddress" );
+	var theInstrument   = document.getElementById( "Instrument" );
 
 	if( theMusicianName.value == "" )
 	{
-		doErrorDetails( "You forgot the musician name" );
+		doErrorDetails( "You forgot the Musician Name" );
 	}
-	else if( theInstrumet.value == "" )
+	else if( theInstrument.value == "" )
 	{
-		doErrorDetails( "You forgot the Instrument" );
-	}
-	else if( theExperience.value == "" )
-	{
-		doErrorDetails( "You forgot the Years of Experience" );
-	}
-	else if( theEmail.value == "" )
-	{
-		doErrorDetails( "You forgot the Email Address" );
+		doErrorDetails( "You forgot the Instrument." );
 	}
 	else
 	{
-		alert( "Thanks for all the info!" );
 		document.getElementById( "frmMusician" ).submit();
 	}
+}
+
+function hideErrorMessages()
+{
+	var theErrorPanel = document.getElementById( "errorMessages" );
+	theErrorPanel.style.display = "none";
 }
 
 function doErrorDetails( theErrorMessage )
@@ -35,12 +30,6 @@ function doErrorDetails( theErrorMessage )
 	var theDetails = document.getElementById( "errorDetails" );
 	theDetails.innerHTML = theErrorMessage;
 	showErrorMessages();
-}
-
-function hideErrorMessages()
-{
-	var el = document.getElementById( "errorMessages" );
-	el.style.display = "none";
 }
 
 function showErrorMessages()

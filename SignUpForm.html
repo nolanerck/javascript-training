@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign Up Form</title>
+</head>
+<body>
+
+<div id="theOutput">
+
+</div>
+
+<button id="btnChangeAppearance">Change Appearance</button>
+
+<script>
+	var myName = prompt( "what is your name?" );
+
+	var myMessage = "Hello, " + myName;
+
+	var outputEl = document.getElementById( "theOutput" );
+
+	outputEl.innerHTML = myMessage;
+
+	document.getElementById( "btnChangeAppearance" ).addEventListener( "click", doChangeAppearance );
+
+	function doChangeAppearance()
+	{
+		var outputEl = document.getElementById( "theOutput" );
+		outputEl.style.fontFamily = "Verdana";
+		outputEl.style.fontSize = "22px";
+		outputEl.style.fontWeight = "bold";
+	}
+
+</script>
+
+</body>
+</html>

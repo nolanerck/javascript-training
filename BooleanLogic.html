@@ -1,44 +1,33 @@
 <script>
 
-var myAge = 22;
+var myAge = 12;
 var myYearsExperience = 2;
-
-var myName = "John Mayer";
 
 var isOldEnough = false;
 var isExperienced = false;
 
-/*
-	only musicians over 21 and with 10+
-	years of experience can play in his band
-*/
+var isUnion = false;
 
 if( myAge >= 21 )
 {
 	isOldEnough = true;
-}
-else
-{
-	isOldEnough = false;
 }
 
 if( myYearsExperience >= 10 )
 {
 	isExperienced = true;
 }
+
+// if( isOldEnough == true || isExperienced == true )
+// the short-hand of this is below:
+
+if( isOldEnough || isExperienced )
+{
+	alert( "you are qualified to go on tour." );
+}
 else
 {
-	isExperienced = false;
+	alert( "sorry you are not qualified." );
 }
-
-if( isOldEnough && isExperienced )
-{
-	alert( "You are qualified with " + myName );
-}
-else
-{
-	alert( "Sorry you are not qualified" );
-}
-
 
 </script>

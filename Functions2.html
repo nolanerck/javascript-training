@@ -1,15 +1,18 @@
 <script>
 
-var bands = [ "The Beatles", "Charlie Parker", "Miles Davis", "Eric Clapton" ];
-
-function getFavoriteBand( bandArray )
+function getFavoriteBand( myBand, genre ) 
 {
-	for( var i = 0; i < bandArray.length; i++ )
-	{
-		alert( "My *FAVORITE* artist is " + bandArray[ i ] );
-	}
+	// alert( "My FAVORITE band is " + myBand );
+	// alert( "They are in the genre: " + genre );
+	document.write( "My FAVORITE band is " + myBand );
+	document.write( "<br>" );
+	document.write( "They are in the genre: " + genre );
+	document.write( "<br>" );
 }
 
-getFavoriteBand( bands );
+getFavoriteBand( "Depeche Mode", "synth pop" );
+getFavoriteBand( "Green Day", "Punk Rock" );
+getFavoriteBand( "Joy Division", "Post Punk" );
+getFavoriteBand( "New Order", "Alternative" );
 
 </script>

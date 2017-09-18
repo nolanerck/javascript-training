@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Browser Events</title>
+</head>
+<body>
+	<button id="myButton">Click Me</button>
+
+	<button id="btnCompliment">Say Nice Things</button>
+
+	<script>
+		function myCustomAlert()
+		{
+			alert( "the button was clicked" );
+			console.log( "the Click Me button was pressed." );
+		}
+
+		function getCompliment()
+		{
+			console.log( "You look nice today." );
+		}
+
+		//var theButton = document.getElementById( "myButton" );
+		//theButton.addEventListener( "click", myCustomAlert );
+		document.getElementById( "myButton" ).addEventListener( "click", myCustomAlert );
+
+		var theComplimentButton = document.getElementById( "btnCompliment" );
+		theComplimentButton.addEventListener( "click", getCompliment );
+	</script>
+</body>
+</html>
+
+
+
+<!--
+<button href="listOfSoftballPlayers.html" onclick="window.open(this.href, null, 'menubar=no,location=no,status=no,scrollbars=yes,width=800,height=800');return false;" target="_blank">Print</button>
+-->

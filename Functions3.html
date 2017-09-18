@@ -1,18 +1,29 @@
 <script>
+var favoriteBandName = "Operation Ivy";
 
-function displayBand( person, instrument, bandName )
+function getAverage( t1, t2, t3 )
 {
-	//alert( person + " plays " + instrument + " in the band " + bandName );
+	var theAverage = ( t1 + t2 + t3 ) / 3;
+	document.write( "The average is: " + theAverage );
+	document.write( "<br>" );
 
-	var myMessage = person + " <b>PLAYS</b> " + instrument + " in the band " + bandName;
-
-	document.write( myMessage + "<br>" );
+	return theAverage;
 }
 
-displayBand( "John Lennon", "acoustic guitar", "The Beatles" );
-displayBand( "Mick Ronson", "guitar", "The Spiders From Mars" );
-displayBand( "Steph Carpentar", "guitar", "Deftones" );
-displayBand( "Vince Clarke", "keyboards", "Erasure" );
-displayBand( "Les Claypool", "bass", "Primus" );
+function displayGreeting()
+{
+	alert( "hi" );
+	alert( "You look nice today" );
+	alert( "have a nice day!" );
+}
+
+
+var myName = "nolan";
+
+document.write( "welcome to our app, " + myName + "<br>" );
+
+var myAnswer = getAverage( 100, 55, 87 );
+
+document.write( "The average is still: " + myAnswer );
 
 </script>
