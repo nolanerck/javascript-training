@@ -1,0 +1,20 @@
+function Employee( name, age, position ) {
+    this._name     = name;
+    this._age      = age;
+    this._position = position;
+ 
+    this.name = function () {
+        return this._name;
+    };
+ 
+    this.age = function () {
+        return this._age;
+    };
+ 
+    this.position = function () {
+        return this._position;
+    };
+}
+ 
+var x = new Person( 'Joe Satriani',     41, 'Guitarist' );
+
